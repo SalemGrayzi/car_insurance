@@ -1,16 +1,24 @@
-pip install pandas
-pip install numpy
-pip install plotly==5.6.0
+my requirements.txt
+freeglut3-dev
+libgtk2.0-dev
+libgl1-mesa-glx
+tesseract-ocr
+libtesseract-dev
+libtesseract4
+tesseract-ocr-all
 
-
-
-import pandas as pd
-import numpy as np
-import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import random
-import altair as alt
+requirements.txt
+streamlit==0.79.0
+opencv-python-headless==4.5.1.48
+textblob==0.15.3
+scipy==1.6.1
+numpy==1.19.2
+pytesseract==0.3.7
+nltk==3.5
+pandas==1.2.2
+scikit-learn==0.24.2
+pyspellchecker
+Inflect
+flask
+flask_cors
+pip
