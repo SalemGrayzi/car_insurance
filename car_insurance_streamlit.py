@@ -6,13 +6,13 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-df =pd.read_csv("https://github.com/SalemGrayzi/car_insurance/blob/main/car_insurance.csv")
+df =pd.read_csv("https://raw.githubusercontent.com/SalemGrayzi/car_insurance/main/car_insurance.csv")
 
 st.title('Car Insurance')
 
 @st.cache
 def load_data(nrows):
-    data =pd.read_csv("https://github.com/SalemGrayzi/car_insurance/blob/main/car_insurance.csv")
+    data =pd.read_csv("https://raw.githubusercontent.com/SalemGrayzi/car_insurance/main/car_insurance.csv")
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
     return data
