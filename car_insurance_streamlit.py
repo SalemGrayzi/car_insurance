@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+
 
 df =pd.read_csv("C:/Users/salem/Desktop/AUB/Courses/spring/msba_325_visualization/week2//h.w1/car_insurance.csv")
 
@@ -133,13 +133,13 @@ fig11 = px.icicle(
     values="OUTCOME",color_continuous_scale='Edge')
 
 chart_visual = st.sidebar.selectbox('Select Charts/Plot type',
-                                    ['All','Gender and Vehicle', 'Percentage of Vehicle Type',
+                                    ['Gender and Vehicle', 'Percentage of Vehicle Type',
                                     'Age of Vehicle','Percentage of Vehicle Age',
                                     'Annual Mileage','Percentage of DUIS Offense',
                                     'Percentage of Past Accidents',
                                     'Percentage of Speeding Offense',
                                     'Does Violation Increase Claiming Insurance?',
-                                    'Income Group','Distribution of Customers'])
+                                    'Income Group','Distribution of Customers','All'])
 
 if chart_visual == 'Gender and Vehicle':
         fig1
