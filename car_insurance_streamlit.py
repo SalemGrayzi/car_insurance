@@ -1,5 +1,15 @@
 pip install -U -r requirements.txt
 
+import pandas as pd
+import numpy as np
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import random
+import altair as alt
 
 df =pd.read_csv("C:/Users/salem/Desktop/AUB/Courses/spring/msba_325_visualization/week2//h.w1/car_insurance.csv")
 
