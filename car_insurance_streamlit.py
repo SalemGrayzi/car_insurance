@@ -5,6 +5,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+if(st.button("Intro")):
+    st.text("Welcome To My First Streamlit Website")
+
 
 df =pd.read_csv("https://raw.githubusercontent.com/SalemGrayzi/car_insurance/main/car_insurance.csv")
 
