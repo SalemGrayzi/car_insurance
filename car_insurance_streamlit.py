@@ -12,7 +12,7 @@ st.title('Car Insurance')
 
 @st.cache
 def load_data(nrows):
-    data =pd.read_csv("C:/Users/salem/Desktop/AUB/Courses/spring/msba_325_visualization/week2//h.w1/car_insurance.csv")
+    data =pd.read_csv("https://raw.githubusercontent.com/SalemGrayzi/car_insurance/main/car_insurance.csv")
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
     return data
