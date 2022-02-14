@@ -34,7 +34,7 @@ values = st.sidebar.slider('Credit range for education levels', float(data.credi
 f = px.histogram(data.query(f'credit_score.between{values}'), x='education',
 nbins=15, title='Average Credit Score Per Education Level')
 f.update_xaxes(title='Education Level')
-f.update_yaxes(title='Credit Score')
+f.update_yaxes(title='Sum of Customers of Selected Scores')
 
 if st.checkbox('Show Education and Avg Credit Score'):
     st.subheader('Avg Credit Score per Education Level')
@@ -62,7 +62,7 @@ elif Age_Group=='All':
 if st.checkbox('Show Age and Past Accidents'):
     st.write(st.write(AP.update_layout(
         title="Age and Past Accidents",
-        yaxis_title="Sum of Accidents",
+        yaxis_title="Sum of Customers",
         xaxis_title="Had Accidents")))
 
 
