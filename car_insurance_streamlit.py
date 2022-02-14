@@ -12,7 +12,7 @@ st.title('Car Insurance')
 
 @st.cache
 def load_data(nrows):
-    data =pd.read_csv("https://raw.githubusercontent.com/SalemGrayzi/car_insurance/main/car_insurance.csv")
+    data =pd.read_csv("C:/Users/salem/Desktop/AUB/Courses/spring/msba_325_visualization/week2//h.w1/car_insurance.csv")
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
     return data
@@ -25,10 +25,7 @@ if st.checkbox('Show raw data'):
     st.subheader('Raw data')
     st.write(data)
 
-if st.checkbox('Show Avg Credit'):
-    st.subheader('Credit data')
-    st.write((data.groupby("education").credit_score.mean().reset_index()\
-.sort_values("credit_score")))
+
 
 values = st.sidebar.slider('Credit range for education levels', float(data.credit_score.min()), 1., (0., .5))
 f = px.histogram(data.query(f'credit_score.between{values}'), x='education',
@@ -38,16 +35,33 @@ f.update_yaxes(title='Credit Score')
 
 if st.checkbox('Show Education and Avg Credit Score'):
     st.subheader('Avg Credit Score per Education Level')
-    st.write(f)
+    st.write((data.groupby("education").credit_score.mean().reset_index()\
+.sort_values("credit_score")),f)
 
-AP = px.histogram(data, x=data['age'],y=data['past_accidents'],histfunc="sum",barmode='stack',text_auto='.2s')
-AP.update_layout(
-    title="Age and Past Accidents",
-    yaxis_title="Accidents",
-    xaxis_title="Age")
+
+Age_Group = st.sidebar.radio ("Age Group", ("16-25","26-39","40-64","65+",'All'))
+if Age_Group == '16-25':
+    AP=px.histogram(data, x=(data['age']=="16-25"),y=data['past_accidents'],
+    histfunc="sum",barmode='stack',text_auto='.2s')
+elif Age_Group == '26-39':
+    AP=px.histogram(data, x=(data['age']=="26-39"),y=data['past_accidents'],
+    histfunc="sum",barmode='stack',text_auto='.2s')
+elif Age_Group == '40-64':
+    AP=px.histogram(data, x=(data['age']=="40-64"),y=data['past_accidents'],
+    histfunc="sum",barmode='stack',text_auto='.2s')
+
+elif Age_Group == '65+':
+    AP=px.histogram(data, x=(data['age']=="65+"),y=data['past_accidents'],
+    histfunc="sum",barmode='stack',text_auto='.2s')
+elif Age_Group=='All':
+    AP=px.histogram(data, x=data['age'],y=data['past_accidents'],
+    histfunc="sum",barmode='stack',text_auto='.2s').update_xaxes(categoryorder="total ascending")
 if st.checkbox('Show Age and Past Accidents'):
-    st.subheader('Frequency of Age and Accidents')
-    st.write(AP)
+    st.write(st.write(AP.update_layout(
+        title="Age and Past Accidents",
+        yaxis_title="Sum of Accidents",
+        xaxis_title="Had Accidents")))
+
 
 fig1 = px.histogram(data, x=df['GENDER'],y=df['OUTCOME'],histfunc="sum",barmode='stack',text_auto='.2s')
 fig1.update_layout(
@@ -132,38 +146,56 @@ fig11 = px.icicle(
     path= [px.Constant("Distribution of Customers"),'AGE','INCOME',"RACE"],
     values="OUTCOME",color_continuous_scale='Edge')
 
-chart_visual = st.sidebar.selectbox('Select Charts/Plot type',
-                                    ['Gender and Vehicle', 'Percentage of Vehicle Type',
-                                    'Age of Vehicle','Percentage of Vehicle Age',
-                                    'Annual Mileage','Percentage of DUIS Offense',
-                                    'Percentage of Past Accidents',
-                                    'Percentage of Speeding Offense',
-                                    'Does Violation Increase Claiming Insurance?',
-                                    'Income Group','Distribution of Customers','All'])
+chart_visual = st.sidebar.selectbox('Select Histogram',
+                                    ['None','Gender and Vehicle','Age of Vehicle',
+                                    'Annual Mileage','Does Violation Increase Claiming Insurance?',
+                                    'Income Group'])
 
 if chart_visual == 'Gender and Vehicle':
         fig1
-elif chart_visual == 'Percentage of Vehicle Type':
-        fig2
 elif chart_visual == 'Age of Vehicle':
         fig3
-elif chart_visual == 'Percentage of Vehicle Age':
-        fig4
 elif chart_visual == 'Annual Mileage':
         fig5
-elif chart_visual == 'Percentage of DUIS Offense':
-        fig6
-elif chart_visual == 'Percentage of Past Accidents':
-        fig7
-elif chart_visual == 'Percentage of Speeding Offense':
-        fig8
 elif chart_visual == 'Does Violation Increase Claiming Insurance?':
         fig9
 elif chart_visual == 'Income Group':
         fig10
-elif chart_visual == 'Distribution of Customers':
-        fig11
-elif chart_visual == 'All':
-        fig1,fig2,fig3,fig4,fig5,fig6,fig7,fig8,fig9,fig10,fig11
-
+elif chart_visual == 'None':
+    st.write(str(''))
 st.sidebar.write("You selected", chart_visual)
+
+pie_visual = st.sidebar.selectbox('Select Pie Chart',
+                                    ['None','Percentage of Vehicle Type',
+                                    'Percentage of Vehicle Age',
+                                    'Percentage of DUIS Offense',
+                                    'Percentage of Past Accidents',
+                                    'Percentage of Speeding Offense'])
+if pie_visual == 'Percentage of Vehicle Type':
+        fig2
+elif pie_visual == 'Percentage of Vehicle Age':
+        fig4
+elif pie_visual == 'Percentage of DUIS Offense':
+        fig6
+elif pie_visual == 'Percentage of Past Accidents':
+        fig7
+elif pie_visual == 'Percentage of Speeding Offense':
+        fig8
+elif chart_visual == 'None':
+    st.write(str(''))
+
+st.sidebar.write("You selected", pie_visual)
+
+if st.sidebar.checkbox('Show Distribution of Customers'):
+    st.subheader("Customer Distribution")
+    st.write(px.icicle(
+        df,
+        path= [px.Constant("Distribution of Customers"),'AGE','INCOME',"RACE"],
+        values="OUTCOME",color_continuous_scale='Edge'))
+
+if st.sidebar.checkbox('Show all graphs'):
+    st.subheader('All Graphs')
+    st.write(fig1,fig2,fig3,fig4,fig5,fig6,fig7,fig8,fig9,fig10,fig11)
+
+if(st.button("About Me")):
+    st.text("My name is Salem Grayzi,and the link to my Github repository= https://github.com/SalemGrayzi/car_insurance")
