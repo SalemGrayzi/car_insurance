@@ -4,9 +4,21 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from PIL import Image
 
+st.sidebar.image('C:/Users/salem/Desktop/moodle-AUB_OSB_logo.png')
+
+inf='At Protsance (an insurance company) we would like to know:'
+inf1='1- Who will run our insurance incase of an accident?'
+inf2= '2- What attributes increase the risk of an accident?'
+inf3='Data from 10k of our current customers was collected to achieve our goal of changing our rates according to specific conditions'
+infs=inf,inf1,inf2,inf3
 if(st.button("Intro")):
-    st.text("Welcome To My First Streamlit Website")
+    st.markdown("Welcome To My First Streamlit Website")
+    st.markdown('At Protsance (an insurance company) we would like to know:')
+    st.markdown('1- Who will run our insurance incase of an accident?')
+    st.markdown('2- What attributes increase the risk of an accident?')
+    st.markdown('Data from 10k of our current customers was collected to achieve our goal of changing our rates according to specific conditions')
 
 
 df =pd.read_csv("https://raw.githubusercontent.com/SalemGrayzi/car_insurance/main/car_insurance.csv")
@@ -90,6 +102,7 @@ fig3.update_layout(
     yaxis_title="Claimed Insurance",
     legend_title="Gender")
 
+
 vy=df['VEHICLE_YEAR'].value_counts()
 vys=df['VEHICLE_YEAR'].value_counts().index
 fig4=px.pie(values=vy,names=vys)
@@ -155,15 +168,15 @@ chart_visual = st.sidebar.selectbox('Select Histogram',
                                     'Income Group'])
 
 if chart_visual == 'Gender and Vehicle':
-        fig1
+        fig1,st.markdown('As we can see from our visualization,we can conclude that male customers will have accidents more than females.')
 elif chart_visual == 'Age of Vehicle':
-        fig3
+        fig3,st.markdown('As we can see vehicles that fall below 2015 are at a higher risk of an accident, with male drivers crashing more than female drivers.')
 elif chart_visual == 'Annual Mileage':
-        fig5
+        fig5, st.markdown('We can conclude from this boxplot customers who drove more annually have a higher chance of an accident than driving less. Females drive more than males and have a more volatile violin compared to their not claimed counterpart')
 elif chart_visual == 'Does Violation Increase Claiming Insurance?':
-        fig9
+        fig9,st.markdown('As we can see from our data the number of customers using their insurance are much lower compared to not using it even though the violations are higher for customers who did not crash. This shows that violations are not correlated greatly to crashing.')
 elif chart_visual == 'Income Group':
-        fig10
+        fig10,st.markdown('Most people that are prone to having an accident are poverty and working class, in both races. This shows us that people in those groups are reckless drivers due to high numbers compared to other groups.')
 elif chart_visual == 'None':
     st.write(str(''))
 st.sidebar.write("You selected", chart_visual)
@@ -175,9 +188,9 @@ pie_visual = st.sidebar.selectbox('Select Pie Chart',
                                     'Percentage of Past Accidents',
                                     'Percentage of Speeding Offense'])
 if pie_visual == 'Percentage of Vehicle Type':
-        fig2
+        fig2,st.markdown('majority of our customers crash in a sedan rather than sports car, this could be due to low numbers of sports car owners in  our data base of just 4.77%.')
 elif pie_visual == 'Percentage of Vehicle Age':
-        fig4
+        fig4,st.markdown('')
 elif pie_visual == 'Percentage of DUIS Offense':
         fig6
 elif pie_visual == 'Percentage of Past Accidents':
@@ -191,6 +204,7 @@ st.sidebar.write("You selected", pie_visual)
 
 if st.sidebar.checkbox('Show Distribution of Customers'):
     st.subheader("Customer Distribution")
+    st.markdown('Overview of our customers in our data base who are prone to an accident')
     st.write(px.icicle(
         df,
         path= [px.Constant("Distribution of Customers"),'AGE','INCOME',"RACE"],
@@ -201,4 +215,4 @@ if st.sidebar.checkbox('Show all graphs'):
     st.write(fig1,fig2,fig3,fig4,fig5,fig6,fig7,fig8,fig9,fig10,fig11)
 
 if(st.button("About Me")):
-    st.text("My name is Salem Grayzi,and the link to my Github repository= https://github.com/SalemGrayzi/car_insurance")
+    st.markdown("My name is Salem Grayzi,and the link to my Github: https://github.com/SalemGrayzi/car_insurance")
