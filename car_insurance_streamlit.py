@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
 
-st.sidebar.image('C:/Users/salem/Desktop/moodle-AUB_OSB_logo.png')
+st.sidebar.image('https://github.com/SalemGrayzi/car_insurance/blob/main/moodle-AUB_OSB_logo.png')
 
 inf='At Protsance (an insurance company) we would like to know:'
 inf1='1- Who will run our insurance incase of an accident?'
