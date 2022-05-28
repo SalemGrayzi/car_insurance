@@ -7,7 +7,7 @@ from plotly.subplots import make_subplots
 from PIL import Image
 
 st.sidebar.image('https://lms.aub.edu.lb/pluginfile.php/1/theme_lambda9/logo/1645015980/moodle-AUB_OSB_logo.png', use_column_width=True)
-st.image('https://github.com/SalemGrayzi/car_insurance/blob/main/image_2022-02-16_170524.png?raw=true', width=400)
+#st.image('https://github.com/SalemGrayzi/car_insurance/blob/main/image_2022-02-16_170524.png?raw=true', width=400)
 
 
 inf='At Protsance (an insurance company) we would like to know:'
