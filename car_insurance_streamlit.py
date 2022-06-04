@@ -170,7 +170,7 @@ chart_visual = st.sidebar.selectbox('Select Histogram',
                                     'Income Group'])
 
 if chart_visual == 'Gender and Vehicle':
-        fig1,st.markdown('As we can see from our visualization,we can conclude that male customers will have accidents more than females.')
+        fig1,st.write('As we can see from our visualization,we can conclude that male customers will have accidents more than females.')
 elif chart_visual == 'Age of Vehicle':
         fig3,st.markdown('As we can see vehicles that fall below 2015 are at a higher risk of an accident, with male drivers crashing more than female drivers.')
 elif chart_visual == 'Annual Mileage':
